@@ -24,6 +24,10 @@ function cacheSet<T>(key: string, data: T): void {
   cache.set(key, { data, expiresAt: Date.now() + TTL_MS });
 }
 
+export function invalidarCache(): void {
+  cache.clear();
+}
+
 // ---------------------------------------------------------------------------
 // HTTP client
 // ---------------------------------------------------------------------------
