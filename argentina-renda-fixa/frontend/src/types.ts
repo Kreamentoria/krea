@@ -19,3 +19,48 @@ export interface ApiResponse<T> {
   data: T;
   error?: string;
 }
+
+export interface InstrumentoRendaFixa {
+  id: string;
+  nome: string;
+  tipo: 'plazo_fijo' | 'lebad' | 'lecap' | 'bono_CER' | 'bono_dolar_linked' | 'fci';
+  moeda: 'ARS' | 'USD' | 'UVA';
+  taxaAnual: number;
+  taxaEfetiva?: number;
+  prazoMinimo: number;
+  prazoMaximo?: number;
+  monteMinimoARS?: number;
+  banco?: string;
+  atualizadoEm: string;
+  fonte: string;
+}
+
+export interface SimulacaoInput {
+  instrumentoId: string;
+  valorInicial: number;
+  prazo: number;
+  reinvestirJuros: boolean;
+}
+
+export interface SimulacaoResult {
+  instrumento: InstrumentoRendaFixa;
+  valorInicial: number;
+  valorFinal: number;
+  rendimentoBruto: number;
+  rendimentoLiquido: number;
+  impostoRetido: number;
+  inflacaoEstimada?: number;
+  rendimentoRealEstimado?: number;
+  evolucaoMensal: Array<{ mes: number; valor: number }>;
+  comparativoUSD?: number;
+}
+
+export interface TaxasMercado {
+  inflacaoMensalUltima: number;
+  inflacaoAnualAcumulada: number;
+  tipoCambioOficial: number;
+  tipoCambioBlue: number;
+  tipoCambioCCL: number;
+  tasaPoliticaMonetaria: number;
+  atualizadoEm: string;
+}
